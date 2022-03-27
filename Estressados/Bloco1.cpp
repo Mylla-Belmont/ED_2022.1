@@ -101,7 +101,7 @@ int contar(vector<int> fila, int x) {
     return cont;
 }
 
-bool exite(vector<int> fila, int x) {
+bool existe(vector<int> fila, int x) {
     for (int vet : fila)
         return (vet == x) ? true : false;
     return false;
@@ -109,7 +109,7 @@ bool exite(vector<int> fila, int x) {
 
 int main() {
     /* BUSCA */
-    cout << exite({-1, -50, -99}, -1) << endl;   
+    cout << existe({-1, -50, -99}, -1) << endl;   
     cout << contar({-1, -50, -1, -99}, -1) << endl;    
     cout << procurar({-1, -50, -1, -99}, -50) << endl;    
     cout << procurar_apartir({5, 3, -1, -50, -1, -99}, -1, 4) << endl;   
