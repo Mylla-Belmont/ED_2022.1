@@ -64,7 +64,7 @@ void inverter_inplace(vector<int>& fila) {
 int sortear(const vector<int>& fila) {
     srand((unsigned) time(0));
     int size {(int) fila.size()}, randomNumber {0};
-    randomNumber = (rand() % size);
+    randomNumber = (rand() % size) -1;
     return fila[randomNumber];
 }
 

@@ -12,17 +12,17 @@ void imprimir(vector<int> nome_vetor){
     cout << "]" << endl;
 }
 
-/*int size {(int) fila.size()};
-    vector<int> novo_vetor {}, aux {fila};
-    for (int i {0}; i < size; i++)
-        for (int j {i}; j < size; j++){
-            novo_vetor.push_back((abs(fila[i]) == abs(aux[j])) ? 0 : fila[i]);
-            aux[j] = 0;
-        }
-    vector<int> vetor = exclusivos(novo_vetor);    */
-
 vector<int> sozinhos(const vector<int>& fila) {
-    return;  
+    int size {(int) fila.size()};
+    vector<int> novo_vetor {fila};
+    for (int i{0}; i < size; i++)
+        for (int j {0}; j < size; i++)
+            if (novo_vetor[i] == novo_vetor[j] && novo_vetor[i] != 0) {
+                novo_vetor[i] = 0;
+                novo_vetor[j] = 0;
+            }
+    imprimir(novo_vetor);
+    return novo_vetor;  
 }
 
 int main() {
