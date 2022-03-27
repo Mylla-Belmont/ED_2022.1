@@ -13,26 +13,63 @@ void imprimir(vector<int> nome_vetor){
     cout << "]" << endl;
 }
 
-vector<int> abandonados(const vector<int>& fila){
+vector<int> clonar(const vector<int>& fila) {
+    vector<int> novo_vector {};
+    for (auto vet : fila)
+        novo_vector.push_back(vet);
+    return novo_vector;
+}
+
+vector<int> pegar_homens(const vector<int>& fila) {
+    vector<int> novo_vector {};
+    for (auto vet : fila)
+        if (vet > 0)
+            novo_vector.push_back(vet);
+    return novo_vector;
+}
+
+vector<int> pegar_calmos(const vector<int>& fila) {
+    vector<int> novo_vector {};
+    for (auto vet : fila)
+        if (abs (vet) < 10)
+            novo_vector.push_back(vet);
+    return novo_vector;
+}
+
+vector<int> pegar_mulheres_calmas(const vector<int>& fila) {
+    vector<int> novo_vector {};
+    for (auto vet : fila)
+        if (vet < 0 && abs (vet) < 10)
+            novo_vector.push_back(vet);
+    return novo_vector;
+}
+
+vector<int> inverter_com_copia(const vector<int>& fila) {
+    vector<int> novo_vector {};
     int size {(int) fila.size()};
-    vector<int> novo_vetor {};
-    
-    return novo_vetor;
+    for (int i = size-1; i >=0; i--)
+        novo_vector.push_back(fila[i]);
+    return novo_vector;
 }
 
-vector<int> diferentes(const vector<int>& fila){
-    vector<int> novo_vetor {};
-    for (auto vet : fila) 
-        if (vet > 0) 
-            novo_vetor.push_back(vet);
-    return novo_vetor;
+void inverter_inplace(vector<int>& fila) {
+    int size {(int) fila.size()};
+    for (int i = 0, j = (size-1); i < (size/2); i++, j--) {
+        int aux{fila[i]};
+        fila[i] = fila[j];
+        fila[j] = aux;
+    }
 }
 
-vector<int> exclusivos(const vector<int>& fila){
-    vector<int> novo_vetor {fila};
-    auto last = unique(novo_vetor.begin(), novo_vetor.end());  
-    novo_vetor.erase(last, novo_vetor.end());  
-    return novo_vetor;
+int sortear(const vector<int>& fila) {
+    srand((unsigned) time(0));
+    int size {(int) fila.size()}, randomNumber {0};
+    randomNumber = (rand() % size);
+    return fila[randomNumber];
+}
+
+void embaralhar(vector<int>& fila) {
+    random_shuffle(fila.begin(), fila.end());
 }
 
 void swap(int *a, int *b) {
@@ -53,67 +90,41 @@ void ordenar(vector<int>& fila) {
     }
 }
 
-void embaralhar(vector<int>& fila) {
-    random_shuffle(fila.begin(), fila.end());
+vector<int> exclusivos(const vector<int>& fila){
+    vector<int> novo_vetor {fila};
+    auto last = unique(novo_vetor.begin(), novo_vetor.end());  
+    novo_vetor.erase(last, novo_vetor.end());  
+    return novo_vetor;
 }
 
-int sortear(const vector<int>& fila) {
-    srand((unsigned) time(0));
-    int size {(int) fila.size()}, randomNumber {0};
-    randomNumber = (rand() % size);
-    return fila[randomNumber];
+vector<int> diferentes(const vector<int>& fila){
+    vector<int> novo_vetor {};
+    for (auto vet : fila) 
+        if (vet > 0) 
+            novo_vetor.push_back(vet);
+    return novo_vetor;
 }
 
-void inverter_inplace(vector<int>& fila) {
-    int size {(int) fila.size()};
-    for (int i = 0, j = (size-1); i < (size/2); i++, j--) {
-        int aux{fila[i]};
-        fila[i] = fila[j];
-        fila[j] = aux;
+int procurar(vector<int> fila, int x) {
+    int size {(int)fila.size()};
+    for (int i = 0; i < size; i++)
+        if (fila[i] == x)
+            return i;
+    return -1;
+}
+
+vector<int> abandonados(const vector<int>& fila){
+    vector<int> novo_vetor {fila};
+    for (int vet : exclusivos(novo_vetor)) {
+        int index{procurar(novo_vetor, vet)};
+            if (index != -1)
+                novo_vetor.erase(novo_vetor.begin() + index);
     }
-}
-
-vector<int> inverter_com_copia(const vector<int>& fila) {
-    vector<int> novo_vector {};
-    int size {(int) fila.size()};
-    for (int i = size-1; i >=0; i--)
-        novo_vector.push_back(fila[i]);
-    return novo_vector;
-}
-
-vector<int> pegar_mulheres_calmas(const vector<int>& fila) {
-    vector<int> novo_vector {};
-    for (auto vet : fila)
-        if (vet < 0 && abs (vet) < 10)
-            novo_vector.push_back(vet);
-    return novo_vector;
-}
-
-vector<int> pegar_calmos(const vector<int>& fila) {
-    vector<int> novo_vector {};
-    for (auto vet : fila)
-        if (abs (vet) < 10)
-            novo_vector.push_back(vet);
-    return novo_vector;
-}
-
-vector<int> pegar_homens(const vector<int>& fila) {
-    vector<int> novo_vector {};
-    for (auto vet : fila)
-        if (vet > 0)
-            novo_vector.push_back(vet);
-    return novo_vector;
-}
-
-vector<int> clonar(const vector<int>& fila) {
-    vector<int> novo_vector {};
-    for (auto vet : fila)
-        novo_vector.push_back(vet);
-    return novo_vector;
+    return novo_vetor;
 }
 
 int main() {
-    vector<int> vetor {-51, 99, 1, -50, -1, -99, 1, -50, -1};
+    vector<int> vetor {-51, 99, 1, -50, -1, -99, -50, -1};
     /*  FILTER  */
     imprimir(clonar(vetor));
     imprimir(pegar_homens(vetor));
@@ -128,7 +139,7 @@ int main() {
     imprimir(vetor);     
     ordenar(vetor);
     imprimir(vetor);   
-    /* FUNÇÕES */
+    /* CONJUNTOS */
     imprimir(exclusivos(vetor));              
     imprimir(diferentes(vetor));              
     imprimir(abandonados(vetor));              
