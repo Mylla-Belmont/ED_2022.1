@@ -64,4 +64,6 @@ int main() {
     /*  APROXIMIDADE  */
     cout << briga({50, 98, 31, -51, 31, -99}) << endl;
     imprimir(apaziguador({83, -4, 65, 8, -99, 12}));
+    /*  SEQUÊNCIAS  */
+    cout << quantos_times({5, 3, 1, -11, 1, 99, -11, -1, -2, 44}) << endl;
 }
