@@ -12,9 +12,9 @@ void imprimir_vetor(vector<int> circulo, int inicio) {
 void remocao(vector<int> circulo, int inicio, int size) {
     for (int i {0}; i < size; i++) {
         imprimir_vetor(circulo, inicio);
-        int next = (inicio + 1) % (int) circulo.size();
+        inicio = (inicio + 1) % (int) circulo.size();
         circulo.erase(circulo.begin() + inicio);
-        inicio = (next + 1) % (int) circulo.size();
+        inicio = inicio % (int) circulo.size();
     }
 }
 
