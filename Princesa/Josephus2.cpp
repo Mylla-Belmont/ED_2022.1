@@ -4,13 +4,12 @@
 using namespace std;
 
 void imprimir_vetor(vector<int> circulo, int inicio) {
-    cout << "[";
     for (int i {0}; i < (int) circulo.size(); i++) {
             if (circulo[i] != 0)
                 cout << " " << i+1;
             if (i == inicio)
                 cout << ">";
-    } cout<< " ]" << endl;
+    } cout << endl;
 }   
 
 int procurar_vivos(vector<int>& circulo, int inicio) {
