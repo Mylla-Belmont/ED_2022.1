@@ -16,7 +16,7 @@ void tocar_fogo(vector<string> &mat, int l, int c){
 
 int main() {
     int nLine {}, nColumn {}, fLine {}, fColumn {};
-    cin << nLine << nColumn << line << column;
+    cin >> nLine >> nColumn >> fLine >> fColumn;
     vector<string> mat;
 
     for (int i {0}; i < nLine; i++) {

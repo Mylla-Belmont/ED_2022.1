@@ -70,7 +70,6 @@ int main() {
         vet.push_back(value);
 
     int size {(int) vet.size()};
-    
     cout << "vet : [ "; printOut(vet, size); cout << "]" << endl;
     //cout << "rvet: [ "; rvet_function(vet, 0, size); cout << "]" << endl;
     cout << "sum : " << sum_function(vet, size) <<  endl;
