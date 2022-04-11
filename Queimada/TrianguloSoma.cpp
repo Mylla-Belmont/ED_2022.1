@@ -10,18 +10,18 @@ void imprimir(vector<int> vetor) {
     cout << endl;
 }
 
-void triangulo(vector<int> vet, int size) {
-    vector<int> aux;
-    if (size != 0) {
-        for (int i = 0; i < size; i++)
+void triangulo(vector<int> vet) {
+    vector<int> aux { };
+    if ((int) vet.size() != 1) {
+        for (int i = 0; i < (int) vet.size()-1; i++)
             aux.push_back(vet[i] + vet[i+1]);
-        triangulo(vet, size);
-        imprimir(vet);
-    } return;    
+        triangulo(aux); 
+        imprimir(aux);
+    } return;
 }
 
 int main() {
-    cout << "Insira o elemento:" << endl;
+    cout << "Insira os elementos:" << endl;
 
     string line;
     getline(cin, line);
@@ -32,6 +32,6 @@ int main() {
     while(ss >> value)
         vet.push_back(value);
     
-    triangulo(vet, (int)vet.size()-1);
+    triangulo(vet);
     imprimir(vet);
 }
