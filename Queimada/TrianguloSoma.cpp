@@ -6,16 +6,17 @@ using namespace std;
 
 void imprimir(vector<int> vetor) {
     for(int vet : vetor)
-        cout << " " << vet;
+        cout << vet << " ";
     cout << endl;
 }
 
-void triangulo(vector<int> vet) {
+void triangulo(vector<int> vet, int size) {
+    size = (int) vet.size();
     vector<int> aux { };
-    if ((int) vet.size() != 1) {
-        for (int i = 0; i < (int) vet.size()-1; i++)
+    if (size != 1) {
+        for (int i = 0; i < size-1; i++)
             aux.push_back(vet[i] + vet[i+1]);
-        triangulo(aux); 
+        triangulo(aux, size); 
         imprimir(aux);
     } return;
 }
@@ -32,6 +33,6 @@ int main() {
     while(ss >> value)
         vet.push_back(value);
     
-    triangulo(vet);
+    triangulo(vet, (int) vet.size());
     imprimir(vet);
 }
