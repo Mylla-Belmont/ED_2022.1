@@ -6,7 +6,7 @@ using namespace std;
 
 void imprimir(vector<int> vetor) {
     for(int vet : vetor)
-        cout << " "<< vet;
+        cout << " " << vet;
     cout << endl;
 }
 
@@ -15,10 +15,9 @@ void triangulo(vector<int> vet, int size) {
     if (size != 0) {
         for (int i = 0; i < size; i++)
             aux.push_back(vet[i] + vet[i+1]);
-        triangulo(vet, size-1);
+        triangulo(vet, size);
         imprimir(vet);
-    }
-    return;    
+    } return;    
 }
 
 int main() {
