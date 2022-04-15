@@ -2,8 +2,6 @@
 
 <b>Nome do projeto:</b> Estressados
 
-<b>Desenvolverdor(a):</b> Camila Belmont
-
 <b>O que foi feito:</b> Foi realizado a proposta de atividade Estressados, que consiste na revisão dos conteudos aprendidos em FUP, mas códificado e estruturado em C++.
 
 <b>Com quem fez:</b> Feito individualmente.
