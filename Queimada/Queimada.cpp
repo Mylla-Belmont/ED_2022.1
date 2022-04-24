@@ -42,3 +42,8 @@ int main() {
     show(mat);
     tacar_fogo(mat, fLine, fColumn);
 }
+
+//Entrada de informações pelo ifstream
+//Criação de matriz utilizando vetores
+//Função getchar
+//Formação de pilha por recursão
