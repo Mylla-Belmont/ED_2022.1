@@ -1,29 +1,44 @@
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
 void show(vector<string> mat){
-    for(int l = 0; l < (int) mat.size(); l++)
-        cout << mat[l] << "\n";
+    for (auto vet : mat)
+        cout << vet << endl;
+    getchar();
 }
 
-void tocar_fogo(vector<string> &mat, int l, int c){
+void tacar_fogo(vector<string> &mat, int lpos, int cpos){
     int nl = mat.size();
     int nc = mat[0].size();
-    //TODO faca seu codigo aqui
+    
+    if (lpos < 0 || lpos >= nl || cpos < 0 || cpos >= nc)
+        return;
+    if (mat[lpos][cpos] != '#')
+        return;
+   
+    mat[lpos][cpos] = 'o';
+    show(mat);
+
+    tacar_fogo(mat, lpos, cpos - 1);
+    tacar_fogo(mat, lpos - 1, cpos);
+    tacar_fogo(mat, lpos, cpos + 1);
+    tacar_fogo(mat, lpos + 1, cpos);
 }
 
 int main() {
-    int nLine {}, nColumn {}, fLine {}, fColumn {};
-    cin >> nLine >> nColumn >> fLine >> fColumn;
     vector<string> mat;
+    ifstream arq("Input.txt");
+    int nLine { }, nColumn { }, fLine { }, fColumn { };
+    arq >> nLine >> nColumn >> fLine >> fColumn;
 
     for (int i {0}; i < nLine; i++) {
         string line;
-        cin >> line;
+        arq >> line;
         mat.push_back(line);
     }
-    tocar_fogo(mat, fLine, fColumn);
     show(mat);
+    tacar_fogo(mat, fLine, fColumn);
 }
