@@ -11,8 +11,8 @@ void show (vector<string> vet) {
     cout << "]" << endl;
 }
 
-void right_rotation (vector<string>& vet, int nrot) {
-    int fim { vet.size()-1 };
+void right_rotation (vector<string> &vet, int nrot) {
+    int fim { (int)vet.size()-1 };
     for (int i { 0 }; i < nrot; i++){
         string aux = vet[fim];
             for(int j { fim }; j > 0; j--)
