@@ -9,22 +9,15 @@ void show(vector<string> vet) {
         cout << value << " ";
 }
 
-void filaIngressos(vector<string> vet1, vector<string> vet2, vector<string> &vetResult){
-    int pos { 0 };
+void filaIngressos(vector<string> &vet1, vector<string> &vet2, vector<string> &vetResult){
     for(int i { 0 }; i < (int) vet1.size(); i++)
         for(int j { 0 }; j < (int) vet2.size(); j++)
-            if(vet1[i] == vet2[j]){
+            if(vet1[i] == vet2[j])
                 vet1[i] = "0";
-                cout << vet1[i];
-            }
-    
-    for(int i { 0 }; i < (int) vet1.size(); i++) {
-        if(vet1[i] != "0"){
-            vetResult[pos] = vet1[i];
-            pos++;
-        }
-    }
-    show(vetResult);
+
+    for(int i { 0 }; i < (int) vet1.size(); i++)
+        if(vet1[i] != "0")
+            vetResult.push_back(vet1[i]);
 }
 
 int main() {
@@ -47,6 +40,7 @@ int main() {
         arq >> line;
         vet2.push_back(line);
     }
+    
     filaIngressos(vet1, vet2, vetResult);
     show(vetResult);
 }
