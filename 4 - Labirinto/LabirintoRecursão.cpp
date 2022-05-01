@@ -8,18 +8,18 @@ using matrix = vector<string>;
 
 struct Pos {
     int l, c;
-    Pos (int l, int c) : l(l), c(c){}
+    Pos(int l, int c): l(l), c(c){}
 };
-
-vector<Pos> vizinhos(Pos p) {
-    auto [l, c] = p;
-    return {{l, c-1}, {l-1, c}, {l, c+1}, {l+1, c}};
-}
 
 void mostrar(matrix& mat) {
     for (auto line : mat)
         cout << line << endl;
     getchar();
+}
+
+vector<Pos> vizinhos(Pos p) {
+    auto [l, c] = p;
+    return {{l, c - 1}, {l - 1, c}, {l, c + 1}, {l + 1, c}};
 }
 
 bool limite(matrix& mat, Pos p) {
@@ -47,7 +47,7 @@ bool pode_furar(matrix& mat, Pos p) {
 }
 
 void furar(matrix& mat, Pos p) {
-    auto[l, c] = p;
+    auto [l, c] = p;
     if(limite(mat, p))
         return;
     if(mat[l][c] != '#')
@@ -70,8 +70,8 @@ int main(int argc, char * argv[]) {
     int nl { 0 }, nc { 0 };
     stringstream(argv[1]) >> nl; 
     stringstream(argv[2]) >> nc;
-
     vector<string> mat(nl, string(nc, '#'));
+
     furar(mat, Pos(1, 1));
     mostrar(mat);
 }
