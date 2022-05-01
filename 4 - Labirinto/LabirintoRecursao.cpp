@@ -18,12 +18,14 @@ void mostrar(matrix& mat) {
 }
 
 vector<Pos> vizinhos(Pos p) {
-    auto [l, c] = p;
+    auto l = p.l;
+    auto c = p.c;
     return {{l, c - 1}, {l - 1, c}, {l, c + 1}, {l + 1, c}};
 }
 
 bool limite(matrix& mat, Pos p) {
-    auto [l, c] = p;
+    auto l = p.l;
+    auto c = p.c;
     int nl = mat.size();
     int nc = mat[0].size();
     if (l < 0 || l >= nl || c < 0 || c >= nc)
@@ -47,7 +49,8 @@ bool pode_furar(matrix& mat, Pos p) {
 }
 
 void furar(matrix& mat, Pos p) {
-    auto [l, c] = p;
+    auto l = p.l;
+    auto c = p.c;
     if(limite(mat, p))
         return;
     if(mat[l][c] != '#')
