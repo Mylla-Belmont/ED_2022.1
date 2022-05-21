@@ -1,31 +1,29 @@
 #include <iostream>
-#include <vector>
 #include <fstream>
+#include <vector>
 
 using namespace std;
 using vet = vector<string>;
+using vet_int = vector<int>;
 
-void show(vet& vetor) {
+void show(vet_int vetor) {
     for(auto value : vetor)
         cout << value << " ";
+    cout << endl;
 }
 
-void filaIngressos(vet& vet1, vet& vet2, vet& vetResult){
-    for(int i { 0 }; i < (int) vet1.size(); i++)
-        for(int j { 0 }; j < (int) vet2.size(); j++)
-            if(vet1[i] == vet2[j])
-                vet1[i] = "0";
-
-    for(int i { 0 }; i < (int) vet1.size(); i++)
-        if(vet1[i] != "0")
-            vetResult.push_back(vet1[i]);
+void matchingStrings(vet vet1, vet vet2, vet_int& vetResult) {
+    for(int i { 0 }; i < (int) vet2.size(); i++)
+        for(int j { 0 }; j < (int) vet1.size(); j++)
+            if(vet1[j] == vet2[i])
+                vetResult[i] = vetResult[i] + 1;
 }
 
 int main() {
     int size1 { 0 }, size2 { 0 };
-    vector<string> vet1;
-    vector<string> vet2;
-    vector<string> vetResult;
+    vet vet1(size1);
+    vet vet2(size2);
+    vet_int vetResult(size2, 0);
     ifstream arq("Input.txt");
 
     arq >> size1;
@@ -41,7 +39,7 @@ int main() {
         arq >> line;
         vet2.push_back(line);
     }
-    
-    filaIngressos(vet1, vet2, vetResult);
+
+    matchingStrings(vet1, vet2, vetResult);
     show(vetResult);
 }
