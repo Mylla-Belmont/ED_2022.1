@@ -7,38 +7,33 @@ struct Vector{
     int capacity;
     int size;
     int * data;
-
-    Vector(int capacity) {
-        size = 0;
-        this->capacity = capacity;
-        data = new int[capacity];
-    }
 };
 
 Vector * vector_create(int capacity){
-    //crie um vetor dinâmicamente
-    //cria a struct
-    //crie o vetor data
-    //inicialize size e capacity
+    Vector * vetor = new Vector();
+    vetor -> size = 0;
+    vetor -> capacity = capacity;
+    vetor -> data = new int[capacity];
+    return vetor;
 }
 
 void vector_destroy(Vector * vector){
-    //destrua data
-    //destrua a struct
+    delete [] vector -> data;
+    delete vector;
 }
 
 void vector_add(Vector * vector, int value){
-    //utilize capacity e size para verificar se ainda existe espaço
+    if(vector->size < vector->capacity) {
+        vector->data[vector->size] = value;
+        vector->size += 1;
+    }
 }
 
-//retorne a string no formato 
-// [ a b c ]
-string vector_show(Vector * vector){
-    //retorne uma string com os dados do vetor
-    //você pode usar uma stringstream como buffer
-    //stringstream ss;
-    //ss << 5 << " eh inteiro";
-    //ss.str() será "5 eh inteiro"
+void vector_show(Vector * vector){
+    cout << "[";
+    for(int i = 0; i < vector->size; i++)
+        cout << vector->data << " ";
+    cout << " " << endl;
 }
 
 int main(){
@@ -63,7 +58,7 @@ int main(){
             while(ss >> value)
                 vector_add(v, value);
         } else if(cmd == "show"){
-            cout << vector_show(v) << endl;
+            vector_show(v);
         } else {
             cout << "fail: comando invalido\n";
         }
