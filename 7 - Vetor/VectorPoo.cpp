@@ -13,16 +13,22 @@ struct Vector {
         this->capacity = capacity;
         this->data = new int[capacity];
     }
+
     void operator = (const Vector& other){
         this->size = other.size;
         this->capacity = other.capacity;
         if(this->data != nullptr)
             delete [] this->data;
         this->data = new int[other.capacity];
-        for(int )
-        //inicialize this->size com other.size
-        //se this->data não for nulo, devolva a memória com delete
-        //crie nova memória para this->data do tamanho de other.capacity
-        //copie os dados de other.data para this->data
+        for(int i = 0; i < other.size; i++)
+            this->data[i] = other.data[i];
+    }
+
+    Vector(Vector& other){
+        *this = other;
+    }
+
+    ~Vector(){
+        //devolta this->data
     }
 }
