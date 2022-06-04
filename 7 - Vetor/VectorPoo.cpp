@@ -16,6 +16,10 @@ struct Vector {
     void operator = (const Vector& other){
         this->size = other.size;
         this->capacity = other.capacity;
+        if(this->data != nullptr)
+            delete [] this->data;
+        this->data = new int[other.capacity];
+        for(int )
         //inicialize this->size com other.size
         //se this->data não for nulo, devolva a memória com delete
         //crie nova memória para this->data do tamanho de other.capacity
