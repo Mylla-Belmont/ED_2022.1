@@ -14,14 +14,13 @@ struct Client {
 };
 
 struct Bank {
-    vector<Client*> tellers;    //caixas
-    list<Client*> queue_in;     //fila de entrada
-    list<Client*> queue_out;    //fila de saida
-    int docs_gain {0};          //documentos processados
-    int docs_lost {0};          //documentos perdidos
-    int tics {0};               //quantidade de tempo que passou
+    vector<Client*> tellers;    
+    list<Client*> queue_in;    
+    list<Client*> queue_out;    
+    int docs_gain {0};          
+    int docs_lost {0};          
+    int tics {0};               
 
-    //  Roda o algoritmo de passagem de tempo
     void tic() {
         tics++;
         empty_queue_out();
@@ -47,8 +46,11 @@ struct Bank {
         queue_in.push_back(new Client(name, docs, patience)); 
     }
 
-    //  esta vazio se não tem ninguém no banco
-    bool empty() { ... }
+    bool empty() { 
+        for (auto * client : tellers)
+            if (client != nullptr)
+                return false;
+        return queue_in.empty() && queue_out.empty(); }
 
     //  Retirar todos os clientes da fila de saída
     //
