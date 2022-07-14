@@ -53,20 +53,31 @@ struct Bank {
         return queue_in.empty() && queue_out.empty(); 
     }
 
-    void empty_queue_out() { ... }
+    void empty_queue_out() { 
+        for (auto * client : queue_out) {
+            this->docs_lost += client->docs;
+            delete client;
+        }
+        queue_out.clear(); 
+    }
 
-    //  Processar caixa
-    //
-    //  se o caixa tem algum cliente
-    //      se o cliente do caixa tiver algum documento para processar
-    //          incrementa em um this->docs_gain
-    //          decrementa em um os documentos do cliente
-    //      senão
-    //          move o cliente para fila de saída
-    //  senão
-    //      se tem alguem na fila de espera
-    //          move o primeiro da fila de espera para o caixa
-    void process_teller(int index) { ... }
+    void process_teller(int index) { 
+        auto& teller = tellers[index];
+        if (teller != nullptr) {
+            if (teller->docs > 0) {
+                teller->docs -= 1;
+                this->docs_gain += 1;
+            } else {
+                queue_out.push_back(teller);
+                teller = nullptr;
+            }
+        } else {
+            if (queue_in.size() > 0) {
+                teller = queue_in.front(); 
+                queue_in.pop_front();
+            }
+        }
+     }
 
 
     //  Processar fila de entrada
