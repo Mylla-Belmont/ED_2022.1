@@ -26,11 +26,13 @@ int main(){
     advance(it, esc - 1);
 
     while(lista.size() > 1){
-        show(lista, it);
-        it++;
+        show(lista, it); it++;
+        
         if(it == lista.end()) 
             it = lista.begin();
+
         it = lista.erase(it);
+
         if(it == lista.end()) 
             it = lista.begin();
     }
