@@ -49,8 +49,15 @@ struct LinkedList{
             };
         this->head = (this->head);
     }
+
+    void pop_front() {
+        if(head == nullptr)
+            return;
+        Node * node = head;
+        head = head->next;
+        delete node;
+    }
     
-    void pop_front();
     int  size();
 
     LinkedList();
