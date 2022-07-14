@@ -50,13 +50,9 @@ struct Bank {
         for (auto * client : tellers)
             if (client != nullptr)
                 return false;
-        return queue_in.empty() && queue_out.empty(); }
+        return queue_in.empty() && queue_out.empty(); 
+    }
 
-    //  Retirar todos os clientes da fila de saída
-    //
-    //  para cada cliente da fila de saida, 
-    //      this->docs_lost incrementa dos documentos não processado
-    //      chame o delete para cada um deles
     void empty_queue_out() { ... }
 
     //  Processar caixa
