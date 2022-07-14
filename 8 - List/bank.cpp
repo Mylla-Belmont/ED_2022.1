@@ -79,21 +79,32 @@ struct Bank {
         }
      }
 
+    void decrease_patience() { 
+        for (auto it = queue_in.begin(); it != queue_in.end(); ) {
+            if ((*it)->patience > 0) {
+                (*it)->patience -= 1;
+                it++;
+            } else {
+                queue_out.push_back(*it);
+                it = queue_in.erase(it);
+            }
+        } 
+    }
 
-    //  Processar fila de entrada
-    //
-    //  para cada cliente da fila de entrada
-    //      se a paciencia dele for maior que zero
-    //          decremente em um o valor da paciencia
-    //      senão
-    //          mova para fila de saida
-    void decrease_patience() { ... }
+    void finish() { 
+        while (!this->empty())
+            tic();
+    }
 
-    //continua chamando tic até todos os clientes terem ido embora
-    void finish() { ... }
-
-    //gera uma string com os dados dos banco
-    std::string str() { ... }
+    std::string str() { 
+        std::stringstream ss;
+        for (auto client : tellers)
+            ss << "[" << (client == nullptr ? "" : client->str()) << "]";
+        ss << "\nin  :" << fmt(queue_in, "{", "}", " ");
+        ss << "\nout :" << fmt(queue_out,  "{", "}", " ");
+        ss << "\ngain:" << docs_gain << " lost:" << docs_lost;
+        return ss.str();
+    }
 };
 
 int main() {
