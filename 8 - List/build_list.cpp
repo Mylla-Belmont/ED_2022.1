@@ -57,8 +57,16 @@ struct LinkedList{
         head = head->next;
         delete node;
     }
-    
-    int  size();
+
+    int size() {
+        Node * node = head;
+        int cont = 0;
+        while(node != nullptr) {
+            cont += 1;
+            node = node->next;
+        }
+        return cont;
+    }
 
     LinkedList();
     ~LinkedList();
