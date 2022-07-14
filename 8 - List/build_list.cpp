@@ -34,8 +34,22 @@ struct LinkedList{
         else
             this->head = new Node(value, this->head);
     }
+
+    void pop_back() {
+        std::function <Node* (Node*)> fn;
+            fn = [&](Node * node) -> Node *{
+                if(node == nullptr)
+                    return nullptr;
+                if(node->next == nullptr) {
+                    delete node;
+                    return nullptr;
+                }
+                node->next = fn(node->next);
+                return node;
+            };
+        this->head = (this->head);
+    }
     
-    void pop_back();
     void pop_front();
     int  size();
 
