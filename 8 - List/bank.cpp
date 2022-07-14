@@ -43,7 +43,8 @@ struct Bank {
             delete client; 
     }
 
-    void arrive(std::string name, int docs, int patience) { ... }
+    void arrive(std::string name, int docs, int patience) { 
+        queue_in.push_back(new Client(name, docs, patience)); }
 
     //  esta vazio se não tem ninguém no banco
     bool empty() { ... }
