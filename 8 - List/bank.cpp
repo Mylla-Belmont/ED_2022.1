@@ -17,8 +17,8 @@ struct Bank {
     vector<Client*> tellers;    
     list<Client*> entrada;    
     list<Client*> saida;    
-    int docs_gain {0};          
-    int docs_lost {0};          
+    int docsEntrada {0};          
+    int docsPerd {0};          
     int tics {0};               
 
     void tic() {
@@ -55,7 +55,7 @@ struct Bank {
 
     void empty_queue_out() { 
         for (auto * client : saida) {
-            this->docs_lost += client->documentos;
+            this->docsPerd += client->documentos;
             delete client;
         }
         saida.clear(); 
@@ -66,7 +66,7 @@ struct Bank {
         if (teller != nullptr) {
             if (teller->documentos > 0) {
                 teller->documentos -= 1;
-                this->docs_gain += 1;
+                this->docsEntrada += 1;
             } else {
                 saida.push_back(teller);
                 teller = nullptr;
@@ -102,7 +102,7 @@ struct Bank {
             ss << "[" << (client == nullptr ? "" : client->str()) << "]";
         ss << "\nin  :" << fmt(entrada, "{", "}", " ");
         ss << "\nout :" << fmt(saida,  "{", "}", " ");
-        ss << "\ngain:" << docs_gain << " lost:" << docs_lost;
+        ss << "\ngain:" << docsEntrada << " lost:" << docsPerd;
         return ss.str();
     }
 };
