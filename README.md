@@ -1,6 +1,6 @@
 # 🧮 Listas de Exercícios – Estrutura de Dados (ED)
 
-Este repositório contém exercícios e trabalhos desenvolvidos durante a disciplina de **Estrutura de Dados** no curso de **Sistemas de Informação**.
+Este repositório contém exercícios e trabalhos desenvolvidos durante a disciplina de **Estrutura de Dados**.
 
 As implementações foram realizadas em **C++**, com foco no domínio das principais estruturas lineares e não-lineares.
 
